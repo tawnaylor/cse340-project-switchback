@@ -1,22 +1,103 @@
-<section class="hero">
-  <p class="eyebrow">Trail running, all in one place</p>
-  <h1>Find your race. Find your shoes. Hit the dirt.</h1>
-  <p class="lead">Browse trail races and register online, then get gear matched to the terrain you will actually run.</p>
-  <div class="actions">
-    <a class="btn" href="/races">Browse races</a>
-    <a class="btn btn-ghost" href="/products">Shop gear</a>
+<section class="home-hero">
+  <div class="home-hero-content">
+    <p class="eyebrow">Trail races + trail gear</p>
+    <h1>Pick your race. <span>Find your shoes.</span> Hit the dirt.</h1>
+    <p class="lead">Register for trail races, then get shoes and gear matched to the terrain you will actually run.</p>
+    <div class="actions">
+      <a class="btn btn-light" href="/races">Browse races</a>
+      <a class="btn btn-ghost" href="/products">Shop gear</a>
+    </div>
   </div>
+
+  <svg class="home-hero-art" viewBox="0 0 560 360" aria-hidden="true" focusable="false">
+    <circle cx="455" cy="70" r="26" fill="#f0a58f"/>
+    <polygon points="20,360 320,30 540,360" fill="#2d553c"/>
+    <polygon points="320,30 540,360 360,360" fill="#264a34"/>
+    <path d="M100 335 L440 300 L140 262 L410 224 L200 186 L380 150 L260 114 L345 80 L322 48"
+          fill="none" stroke="#c8553d" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
 </section>
 
-<section class="grid-2">
-  <article class="card">
-    <h2>Race calendar</h2>
-    <p>See what is coming up by month, distance, and difficulty. Register in a few clicks and track your status from sign-up to finish line.</p>
-    <a href="/races">View the calendar</a>
-  </article>
-  <article class="card">
-    <h2>Trail shoes and gear</h2>
-    <p>Filter by terrain, drop, and lug depth. Packs, vests, hydration, lights, and everything else for a long day out.</p>
-    <a href="/products">Shop the gear</a>
-  </article>
+<section class="section">
+  <div class="section-head">
+    <h2>Upcoming races</h2>
+    <a href="/races">See the full calendar</a>
+  </div>
+  <% if (races.length) { %>
+    <div class="grid-3">
+      <% races.forEach((race) => { %>
+        <%- include('../partials/race-card', { race }) %>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <p class="empty">No upcoming races yet. Check back soon.</p>
+  <% } %>
 </section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>Shop by terrain</h2>
+    <span class="muted">Races and gear share the same terrain tags</span>
+  </div>
+  <% if (terrains.length) { %>
+    <div class="terrain-grid">
+      <% terrains.forEach((t) => { %>
+        <div class="terrain-tile">
+          <h3><%= t.name %></h3>
+          <div class="terrain-links">
+            <a href="/races?terrain=<%= t.slug %>"><%= t.race_count %> <%= t.race_count === 1 ? 'race' : 'races' %></a>
+            <a href="/products?terrain=<%= t.slug %>"><%= t.product_count %> <%= t.product_count === 1 ? 'product' : 'products' %></a>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <p class="empty">Terrain filters will show up here.</p>
+  <% } %>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>Featured gear</h2>
+    <a href="/products">Shop everything</a>
+  </div>
+  <% if (products.length) { %>
+    <div class="grid-4">
+      <% products.forEach((product) => { %>
+        <%- include('../partials/product-card', { product }) %>
+      <% }) %>
+    </div>
+  <% } else { %>
+    <p class="empty">New gear is on the way.</p>
+  <% } %>
+</section>
+
+<section class="section">
+  <div class="section-head">
+    <h2>How it works</h2>
+  </div>
+  <ol class="steps">
+    <li>
+      <h3>Pick a race</h3>
+      <p>Browse the calendar by month, distance, and difficulty, then register for the distance that fits you.</p>
+    </li>
+    <li>
+      <h3>Get matched gear</h3>
+      <p>Every race lists its terrain, so you can shop shoes and gear built for exactly what you will run on.</p>
+    </li>
+    <li>
+      <h3>Track it all</h3>
+      <p>Follow your registration and your orders from your account, from sign-up to the finish line.</p>
+    </li>
+  </ol>
+</section>
+
+<% if (!currentUser) { %>
+  <section class="cta-band">
+    <div>
+      <h2>Ready for your next trail?</h2>
+      <p>Create a free account to register for races, save your favorites, and order gear.</p>
+    </div>
+    <a class="btn" href="/register">Create an account</a>
+  </section>
+<% } %>

@@ -1,7 +1,3 @@
-export function home(req, res) {
-  res.render('pages/home', { title: 'Trail races and gear' });
-}
-
 // Placeholder until the shop and race features are built.
 export function comingSoon(section) {
   return (req, res) => {

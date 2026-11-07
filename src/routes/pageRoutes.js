@@ -4,8 +4,6 @@ import { requireAuth, requireRole } from '../middleware/auth.js';
 
 const router = Router();
 
-router.get('/', pages.home);
-
 // Placeholders. Replace these with real routers as you build each feature.
 router.get('/products', pages.comingSoon('Shop'));
 router.get('/races', pages.comingSoon('Races'));

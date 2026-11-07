@@ -11,9 +11,7 @@ import { csrf } from './middleware/csrf.js';
 import { attachUser } from './middleware/auth.js';
 import { notFound, errorHandler } from './middleware/errorHandler.js';
 
-import pageRoutes from './routes/pageRoutes.js';
-import authRoutes from './routes/authRoutes.js';
-import adminRoutes from './routes/adminRoutes.js';
+import routes from './routes/index.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isProduction = process.env.NODE_ENV === 'production';
@@ -54,9 +52,7 @@ app.use(csrf);
 app.use(attachUser);
 
 // Routes
-app.use('/', authRoutes);
-app.use('/admin', adminRoutes);
-app.use('/', pageRoutes);
+app.use(routes);
 
 // 404, then the global error handler (must be last)
 app.use(notFound);

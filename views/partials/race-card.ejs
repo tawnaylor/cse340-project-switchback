@@ -1,0 +1,41 @@
+<article class="card-item">
+  <a class="card-image race-banner" href="/races/<%= race.id %>" tabindex="-1" aria-hidden="true">
+    <% if (race.image_url) { %>
+      <img src="<%= race.image_url %>" alt="" loading="lazy" width="640" height="360">
+    <% } else { %>
+      <div class="image-placeholder">
+        <svg viewBox="0 0 120 80" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 74 L60 8 L114 74 Z"/>
+          <path d="M30 62 L78 54 L40 44 L70 36"/>
+        </svg>
+      </div>
+    <% } %>
+    <span class="race-date">
+      <span class="month"><%= monthShort(race.race_date) %></span>
+      <span class="day"><%= dayOfMonth(race.race_date) %></span>
+    </span>
+  </a>
+  <div class="card-body">
+    <p class="card-kicker"><%= race.city %>, <%= race.state %> &middot; <%= formatDate(race.race_date) %></p>
+    <h3><a href="/races/<%= race.id %>"><%= race.name %></a></h3>
+    <% if (race.distance_labels.length) { %>
+      <p class="card-meta"><%= race.distance_labels.join(' / ') %></p>
+    <% } %>
+    <ul class="chips">
+      <li class="chip chip-<%= race.difficulty %>"><%= race.difficulty %></li>
+      <% race.terrain.slice(0, 2).forEach((tag) => { %>
+        <li class="chip"><%= tag %></li>
+      <% }) %>
+    </ul>
+    <p class="card-foot">
+      <% if (race.min_price_cents != null) { %>
+        <strong>From <%= formatPrice(race.min_price_cents) %></strong>
+      <% } else { %>
+        <span></span>
+      <% } %>
+      <% if (race.elevation_gain_ft) { %>
+        <span class="muted"><%= race.elevation_gain_ft.toLocaleString('en-US') %> ft gain</span>
+      <% } %>
+    </p>
+  </div>
+</article>
