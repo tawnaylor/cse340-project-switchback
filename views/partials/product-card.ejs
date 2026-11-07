@@ -10,10 +10,17 @@
         </svg>
       </div>
     <% } %>
+    <% if (!product.in_stock) { %><span class="badge-soldout">Sold out</span><% } %>
   </a>
   <div class="card-body">
     <p class="card-kicker"><%= product.brand_name || product.category_name %></p>
     <h3><a href="/products/<%= product.id %>"><%= product.name %></a></h3>
+    <% if (product.review_count > 0) { %>
+      <p class="card-rating">
+        <span class="stars" aria-label="Rated <%= product.avg_rating %> out of 5"><%= stars(product.avg_rating) %></span>
+        <span class="muted">(<%= product.review_count %>)</span>
+      </p>
+    <% } %>
     <% if (product.terrain.length) { %>
       <ul class="chips">
         <% product.terrain.slice(0, 3).forEach((tag) => { %>

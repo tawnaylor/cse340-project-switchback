@@ -1,4 +1,4 @@
-import { formatPrice, formatDate, monthShort, dayOfMonth } from '../utils/format.js';
+import { formatPrice, formatDate, monthShort, dayOfMonth, stars } from '../utils/format.js';
 
 // Safe default values so every view (including error pages) can render
 // even if a later middleware fails. Also makes the format helpers
@@ -16,5 +16,6 @@ export function defaults(req, res, next) {
   res.locals.formatDate = formatDate;
   res.locals.monthShort = monthShort;
   res.locals.dayOfMonth = dayOfMonth;
+  res.locals.stars = stars;
   next();
 }

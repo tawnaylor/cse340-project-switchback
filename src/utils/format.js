@@ -19,3 +19,9 @@ export function monthShort(date) {
 export function dayOfMonth(date) {
   return new Date(date).getDate();
 }
+
+// 4.4 -> "★★★★☆"
+export function stars(rating) {
+  const filled = Math.max(0, Math.min(5, Math.round(rating || 0)));
+  return '★'.repeat(filled) + '☆'.repeat(5 - filled);
+}

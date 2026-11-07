@@ -280,6 +280,43 @@ tbody tr:last-child td { border-bottom: 0; }
 .cta-band .btn { background: var(--sand); border-color: var(--sand); color: var(--forest); }
 .cta-band .btn:hover { background: #fff; border-color: #fff; }
 
+/* ============ Shop ============ */
+
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.75rem 1rem;
+  align-items: end;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem 1.1rem;
+  margin-bottom: 1rem;
+}
+.filters .field { margin-bottom: 0; }
+.filter-actions { display: flex; gap: 0.5rem; }
+.results-count { margin: 0 0 1rem; }
+
+.badge-soldout {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 6px;
+  padding: 0.2rem 0.55rem;
+}
+
+.stars { color: #d49a1f; letter-spacing: 0.08em; }
+.card-rating { margin: 0; font-size: 0.9rem; }
+
+.pagination { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.75rem; }
+.btn-placeholder { display: inline-block; min-width: 5.5rem; }
+
 @media (max-width: 700px) {
   .home-hero-art { width: 90%; opacity: 0.22; }
 }

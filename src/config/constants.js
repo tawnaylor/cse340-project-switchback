@@ -8,3 +8,6 @@ export const HOME_BY_ROLE = {
 };
 
 export const SESSION_COOKIE_NAME = 'switchback.sid';
+
+// Allowed values for ?sort= on the shop page.
+export const PRODUCT_SORTS = ['newest', 'price-asc', 'price-desc', 'name'];

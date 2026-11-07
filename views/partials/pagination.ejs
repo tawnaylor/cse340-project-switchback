@@ -1,0 +1,15 @@
+<% if (totalPages > 1) { %>
+  <nav class="pagination" aria-label="Pagination">
+    <% if (page > 1) { %>
+      <a class="btn btn-ghost btn-small" href="<%= pageUrl(page - 1) %>">Previous</a>
+    <% } else { %>
+      <span class="btn-placeholder"></span>
+    <% } %>
+    <span class="muted">Page <%= page %> of <%= totalPages %></span>
+    <% if (page < totalPages) { %>
+      <a class="btn btn-ghost btn-small" href="<%= pageUrl(page + 1) %>">Next</a>
+    <% } else { %>
+      <span class="btn-placeholder"></span>
+    <% } %>
+  </nav>
+<% } %>
