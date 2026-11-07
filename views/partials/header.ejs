@@ -1,0 +1,21 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="/">Switchback</a>
+    <nav class="nav" aria-label="Main">
+      <a href="/products">Shop</a>
+      <a href="/races">Races</a>
+      <% if (currentUser) { %>
+        <% if (currentUser.role === 'admin') { %><a href="/admin">Admin</a><% } %>
+        <% if (currentUser.role === 'director') { %><a href="/director">Director</a><% } %>
+        <a href="/account">Account</a>
+        <form action="/logout" method="POST" class="inline-form">
+          <%- include('csrf') %>
+          <button type="submit" class="link-button">Log out</button>
+        </form>
+      <% } else { %>
+        <a href="/login">Log in</a>
+        <a href="/register" class="btn btn-small">Sign up</a>
+      <% } %>
+    </nav>
+  </div>
+</header>

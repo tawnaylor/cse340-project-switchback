@@ -1,0 +1,18 @@
+<section>
+  <h1>Hi, <%= currentUser.first_name %></h1>
+
+  <div class="card">
+    <h2>Your account</h2>
+    <dl class="details">
+      <dt>Name</dt><dd><%= currentUser.first_name %> <%= currentUser.last_name %></dd>
+      <dt>Email</dt><dd><%= currentUser.email %></dd>
+      <dt>Role</dt><dd><span class="badge"><%= currentUser.role %></span></dd>
+      <dt>Member since</dt><dd><%= new Date(currentUser.created_at).toLocaleDateString('en-US', { dateStyle: 'long' }) %></dd>
+    </dl>
+  </div>
+
+  <div class="grid-2">
+    <article class="card"><h2>My race registrations</h2><p class="muted">Coming soon.</p></article>
+    <article class="card"><h2>My orders</h2><p class="muted">Coming soon.</p></article>
+  </div>
+</section>

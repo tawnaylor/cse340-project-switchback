@@ -1,0 +1,43 @@
+<section>
+  <h1>Admin dashboard</h1>
+
+  <div class="stats">
+    <div class="stat"><span class="stat-number"><%= counts.admin || 0 %></span><span>Admins</span></div>
+    <div class="stat"><span class="stat-number"><%= counts.director || 0 %></span><span>Race directors</span></div>
+    <div class="stat"><span class="stat-number"><%= counts.runner || 0 %></span><span>Runners</span></div>
+  </div>
+
+  <h2>Users</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>Name</th><th>Email</th><th>Joined</th><th>Role</th></tr>
+      </thead>
+      <tbody>
+        <% users.forEach((u) => { %>
+          <tr>
+            <td><%= u.first_name %> <%= u.last_name %></td>
+            <td><%= u.email %></td>
+            <td><%= new Date(u.created_at).toLocaleDateString('en-US') %></td>
+            <td>
+              <% if (u.id === currentUser.id) { %>
+                <span class="badge"><%= u.role %></span> <small class="muted">(you)</small>
+              <% } else { %>
+                <form action="/admin/users/<%= u.id %>/role" method="POST" class="role-form">
+                  <%- include('../partials/csrf') %>
+                  <label class="sr-only" for="role-<%= u.id %>">Role for <%= u.first_name %></label>
+                  <select id="role-<%= u.id %>" name="role">
+                    <% ['admin', 'director', 'runner'].forEach((r) => { %>
+                      <option value="<%= r %>" <%= u.role === r ? 'selected' : '' %>><%= r %></option>
+                    <% }) %>
+                  </select>
+                  <button type="submit" class="btn btn-small">Save</button>
+                </form>
+              <% } %>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</section>
